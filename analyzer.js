@@ -5,25 +5,21 @@ function analyzeJobText(text) {
     let score = 0;
     const findings = [];
 
-    Object.entries(RISK_RULES).forEach(([ruleName, rule]) => {
+    Object.values(RISK_RULES).forEach(rule => {
 
-        let matched = false;
-
-        rule.keywords.forEach(keyword => {
-
-            if (content.includes(keyword.toLowerCase())) {
-                matched = true;
-            }
-
-        });
+        const matched = rule.keywords.some(keyword =>
+            content.includes(keyword.toLowerCase())
+        );
 
         if (matched) {
 
             score += rule.weight;
 
             findings.push({
-                category: ruleName,
-                points: rule.weight
+                title: rule.title,
+                severity: rule.severity,
+                points: rule.weight,
+                explanation: rule.explanation
             });
 
         }
@@ -47,7 +43,8 @@ function analyzeJobText(text) {
     return {
         score,
         level,
-        findings
+        findings,
+        warningCount: findings.length
     };
 
 }
