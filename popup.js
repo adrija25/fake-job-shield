@@ -1,29 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const scanButton = document.getElementById("scanCurrentPage");
-    const pasteButton = document.getElementById("pasteJob");
-    const resultBox = document.getElementById("result");
+    const container = document.querySelector(".container");
 
-    scanButton.addEventListener("click", () => {
+    document.getElementById("pasteJob").addEventListener("click", showPasteScreen);
 
-        resultBox.classList.remove("hidden");
+    document.getElementById("scanCurrentPage").addEventListener("click", () => {
 
-        resultBox.innerHTML = `
-            <strong>Coming Soon</strong><br><br>
-            Current page scanning will be added in the next phase.
-        `;
+        alert("Current Page Scan will be added next.");
 
     });
 
-    pasteButton.addEventListener("click", () => {
+    function showPasteScreen() {
 
-        resultBox.classList.remove("hidden");
+        container.innerHTML = `
 
-        resultBox.innerHTML = `
-            <strong>Coming Soon</strong><br><br>
-            Paste & Check mode will be added in the next phase.
+            <header class="header">
+
+                <h1>Paste Job Offer</h1>
+
+                <p class="brand">
+                    Fake Job Shield
+                </p>
+
+            </header>
+
+            <section class="intro">
+
+                <p>
+
+                    Paste a job listing, recruiter message,
+                    internship offer or work-from-home
+                    opportunity below.
+
+                </p>
+
+                <textarea
+                    id="jobText"
+                    placeholder="Paste the job description or recruiter message here..."
+                ></textarea>
+
+            </section>
+
+            <section class="actions">
+
+                <button id="analyzeJob">
+
+                    Analyze Job Offer
+
+                </button>
+
+                <button id="goHome" class="secondary">
+
+                    ← Back
+
+                </button>
+
+            </section>
+
         `;
 
-    });
+        document
+            .getElementById("goHome")
+            .addEventListener("click", () => {
+
+                location.reload();
+
+            });
+
+        document
+            .getElementById("analyzeJob")
+            .addEventListener("click", () => {
+
+                alert("Risk analysis screen coming next.");
+
+            });
+
+    }
 
 });
