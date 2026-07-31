@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("scanCurrentPage")
         .addEventListener("click", () => {
 
-            alert("Current Page Scan will be added soon.");
+            alert("Current Page Scan will be available soon.");
 
         });
 
@@ -19,13 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
         container.innerHTML = `
 
             <header class="header">
-
                 <h1>Paste Job Offer</h1>
-
-                <p class="brand">
-                    Fake Job Shield
-                </p>
-
+                <p class="brand">Fake Job Shield</p>
             </header>
 
             <section class="intro">
@@ -48,15 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <section class="actions">
 
                 <button id="analyzeJob">
-
                     Analyze Job Offer
-
                 </button>
 
                 <button id="goHome" class="secondary">
-
                     ← Back
-
                 </button>
 
             </section>
@@ -65,15 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document
             .getElementById("goHome")
-            .addEventListener("click", () => {
-
-                location.reload();
-
-            });
+            .onclick = () => location.reload();
 
         document
             .getElementById("analyzeJob")
-            .addEventListener("click", () => {
+            .onclick = () => {
 
                 const text = document
                     .getElementById("jobText")
@@ -83,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (text.length < 50) {
 
                     alert(
-                        "Please paste a complete job listing or recruiter message before analyzing."
+                        "Please paste a complete job listing before analyzing."
                     );
 
                     return;
@@ -92,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 showLoadingScreen(text);
 
-            });
+            };
 
     }
 
@@ -105,34 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h1>Analyzing...</h1>
 
                 <p class="brand">
-
                     Fake Job Shield
-
                 </p>
 
             </header>
 
             <section class="intro">
 
-                <p>
-
-                    Checking for recruitment scam warning signs...
-
-                </p>
+                <p>Checking for potential warning signs...</p>
 
                 <br>
 
                 <ul class="loading-list">
 
-                    <li>✔ Checking payment requests</li>
-
-                    <li>✔ Checking salary claims</li>
-
-                    <li>✔ Checking recruiter behaviour</li>
-
-                    <li>✔ Checking communication methods</li>
-
-                    <li>✔ Checking sensitive information requests</li>
+                    <li>✔ Payment requests</li>
+                    <li>✔ Unrealistic salary</li>
+                    <li>✔ Recruiter patterns</li>
+                    <li>✔ Communication methods</li>
+                    <li>✔ Sensitive information requests</li>
 
                 </ul>
 
@@ -142,24 +119,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-            /*
-                Temporary placeholder.
-                Next step will connect analyzer.js
-            */
+            const result = analyzeJob(jobText);
 
-            showResultScreen();
+            showResultScreen(result);
 
         }, 1800);
 
     }
 
-    function showResultScreen() {
+    function showResultScreen(result) {
 
         container.innerHTML = `
 
             <header class="header">
 
-                <h1>Analysis Complete</h1>
+                <h1>Risk Summary</h1>
 
                 <p class="brand">
 
@@ -171,18 +145,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <section class="intro">
 
-                <h2>Risk Summary</h2>
+                <h2>${result.score}/100</h2>
 
                 <p>
 
-                    Your analysis has completed successfully.
+                    <strong>${result.level}</strong>
 
                 </p>
 
                 <p>
 
-                    The real explainable risk score will appear here
-                    after we connect the analysis engine.
+                    ${result.warningCount} warning sign(s) detected.
 
                 </p>
 
@@ -190,7 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <section class="actions">
 
-                <button id="goHomeAgain">
+                <button id="viewAnalysis">
+
+                    View Full Analysis
+
+                </button>
+
+                <button id="analyzeAnother" class="secondary">
 
                     Analyze Another Job
 
@@ -201,12 +180,119 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         document
-            .getElementById("goHomeAgain")
-            .addEventListener("click", () => {
+            .getElementById("viewAnalysis")
+            .onclick = () => {
+
+                showFullAnalysis(result);
+
+            };
+
+        document
+            .getElementById("analyzeAnother")
+            .onclick = () => {
 
                 location.reload();
 
+            };
+
+    }
+
+    function showFullAnalysis(result) {
+
+        let findingsHTML = "";
+
+        if (result.findings.length === 0) {
+
+            findingsHTML = `
+
+                <p>
+
+                    No significant warning signs were detected.
+
+                </p>
+
+            `;
+
+        } else {
+
+            result.findings.forEach(finding => {
+
+                findingsHTML += `
+
+                    <div class="finding">
+
+                        <h3>${finding.title}</h3>
+
+                        <p>${finding.explanation}</p>
+
+                        <small>
+
+                            Severity:
+                            ${finding.severity}
+
+                            (+${finding.points})
+
+                        </small>
+
+                    </div>
+
+                `;
+
             });
+
+        }
+
+        container.innerHTML = `
+
+            <header class="header">
+
+                <h1>Full Analysis</h1>
+
+                <p class="brand">
+
+                    Fake Job Shield
+
+                </p>
+
+            </header>
+
+            <section class="intro">
+
+                ${findingsHTML}
+
+            </section>
+
+            <section class="privacy">
+
+                <h3>Important</h3>
+
+                <p>
+
+                    Fake Job Shield identifies potential warning signs based on explainable rules. A high score does not prove a job offer is fraudulent, and a low score does not guarantee it is legitimate. Always verify recruiters, employers, and payment requests independently before making decisions.
+
+                </p>
+
+            </section>
+
+            <section class="actions">
+
+                <button id="backToResults">
+
+                    ← Back
+
+                </button>
+
+            </section>
+
+        `;
+
+        document
+            .getElementById("backToResults")
+            .onclick = () => {
+
+                showResultScreen(result);
+
+            };
 
     }
 
