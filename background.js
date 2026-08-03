@@ -3,7 +3,11 @@
  * Background Service Worker
  * Manifest V3
  *
- * Handles communication between the popup and the content script.
+ * Handles user-requested Current Page Scan.
+ *
+ * content.js is injected only after the user explicitly
+ * requests a scan from the extension.
+ *
  * No analysis or scoring is performed here.
  */
 
@@ -32,10 +36,6 @@ chrome.runtime.onMessage.addListener(
 
 async function scanCurrentPage(sendResponse) {
     try {
-        /*
-         * Find the currently active tab in the user's
-         * current browser window.
-         */
         const tabs = await chrome.tabs.query({
             active: true,
             currentWindow: true
@@ -62,10 +62,6 @@ async function scanCurrentPage(sendResponse) {
             return;
         }
 
-        /*
-         * Chrome extensions cannot inject/read content from
-         * certain browser-controlled or protected pages.
-         */
         if (!isScannableURL(activeTab.url)) {
             sendFailure(
                 sendResponse,
@@ -75,8 +71,38 @@ async function scanCurrentPage(sendResponse) {
         }
 
         /*
-         * Ask content.js to extract the most relevant
-         * job-related text from the current page.
+         * Inject content.js only after the user has explicitly
+         * requested Current Page Scan.
+         *
+         * activeTab provides temporary access to the current tab,
+         * while scripting allows this user-requested injection.
+         */
+        try {
+            await chrome.scripting.executeScript({
+                target: {
+                    tabId: activeTab.id
+                },
+                files: [
+                    "content.js"
+                ]
+            });
+        } catch (error) {
+            console.warn(
+                "Fake Job Shield: Unable to inject content script.",
+                error
+            );
+
+            sendFailure(
+                sendResponse,
+                "Fake Job Shield cannot access this page. Open a regular job listing webpage and try again."
+            );
+
+            return;
+        }
+
+        /*
+         * content.js is now available on the active page.
+         * Ask it to extract the most relevant job-related text.
          */
         chrome.tabs.sendMessage(
             activeTab.id,
@@ -84,11 +110,6 @@ async function scanCurrentPage(sendResponse) {
                 action: "extractJobText"
             },
             (response) => {
-                /*
-                 * This commonly occurs when content.js is not
-                 * available on the page, such as immediately
-                 * after updating/reloading the extension.
-                 */
                 if (chrome.runtime.lastError) {
                     console.warn(
                         "Fake Job Shield:",
@@ -103,10 +124,6 @@ async function scanCurrentPage(sendResponse) {
                     return;
                 }
 
-                /*
-                 * A content script should always return a
-                 * structured response.
-                 */
                 if (
                     !response ||
                     typeof response !== "object"
@@ -119,10 +136,6 @@ async function scanCurrentPage(sendResponse) {
                     return;
                 }
 
-                /*
-                 * Preserve legitimate extraction errors returned
-                 * by content.js.
-                 */
                 if (response.success !== true) {
                     sendFailure(
                         sendResponse,
@@ -135,10 +148,6 @@ async function scanCurrentPage(sendResponse) {
                     return;
                 }
 
-                /*
-                 * Validate extracted text before sending it
-                 * back to the popup.
-                 */
                 if (
                     typeof response.text !== "string" ||
                     response.text.trim().length < 100
@@ -151,12 +160,6 @@ async function scanCurrentPage(sendResponse) {
                     return;
                 }
 
-                /*
-                 * Successful extraction.
-                 *
-                 * The popup/analyzer will perform the actual
-                 * Fake Job Shield risk analysis.
-                 */
                 sendResponse({
                     success: true,
                     text: response.text.trim()
@@ -188,21 +191,6 @@ function isScannableURL(url) {
 
     const normalizedURL = url.trim().toLowerCase();
 
-    /*
-     * Only ordinary HTTP/HTTPS webpages should be scanned.
-     *
-     * This automatically excludes:
-     * chrome://
-     * chrome-extension://
-     * edge://
-     * about:
-     * file://
-     * view-source:
-     * devtools://
-     * data:
-     * javascript:
-     * and other unsupported schemes.
-     */
     return (
         normalizedURL.startsWith("https://") ||
         normalizedURL.startsWith("http://")
