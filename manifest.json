@@ -20,37 +20,6 @@
 
   "permissions": [
     "activeTab",
-    "tabs"
-  ],
-
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
-  ],
-
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": [
-        "content.js"
-      ],
-      "run_at": "document_idle"
-    }
-  ],
-
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "rules.js",
-        "analyzer.js"
-      ],
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ]
-    }
+    "scripting"
   ]
 }
