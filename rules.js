@@ -72,16 +72,72 @@ const RISK_RULES = {
         title: "Cryptocurrency Payment Requested",
         severity: "Critical",
         weight: 35,
-        explanation: "The recruiter requests payment using cryptocurrency. Legitimate employers rarely require crypto payments during hiring.",
+        explanation: "The recruitment message appears to request payment or a financial transfer using cryptocurrency. Legitimate employers generally do not require applicants to send cryptocurrency as part of the hiring process.",
         keywords: [
-            "bitcoin",
-            "btc",
-            "ethereum",
-            "eth",
-            "usdt",
             "crypto payment",
+            "cryptocurrency payment",
             "pay in crypto",
-            "wallet address"
+            "pay with crypto",
+            "payment in crypto",
+            "payment with crypto",
+            "send crypto",
+            "send cryptocurrency",
+            "transfer crypto",
+            "transfer cryptocurrency",
+            "crypto deposit",
+            "cryptocurrency deposit",
+
+            "pay in bitcoin",
+            "pay with bitcoin",
+            "payment in bitcoin",
+            "payment with bitcoin",
+            "send bitcoin",
+            "transfer bitcoin",
+            "bitcoin payment",
+            "bitcoin deposit",
+
+            "pay in btc",
+            "pay with btc",
+            "payment in btc",
+            "payment with btc",
+            "send btc",
+            "transfer btc",
+            "btc payment",
+            "btc deposit",
+
+            "pay in ethereum",
+            "pay with ethereum",
+            "payment in ethereum",
+            "payment with ethereum",
+            "send ethereum",
+            "transfer ethereum",
+            "ethereum payment",
+            "ethereum deposit",
+
+            "pay in eth",
+            "pay with eth",
+            "payment in eth",
+            "payment with eth",
+            "send eth",
+            "transfer eth",
+            "eth payment",
+            "eth deposit",
+
+            "pay in usdt",
+            "pay with usdt",
+            "payment in usdt",
+            "payment with usdt",
+            "send usdt",
+            "transfer usdt",
+            "usdt payment",
+            "usdt deposit",
+
+            "send to crypto wallet",
+            "send to cryptocurrency wallet",
+            "transfer to crypto wallet",
+            "transfer to cryptocurrency wallet",
+            "crypto wallet payment",
+            "cryptocurrency wallet payment"
         ]
     },
 
@@ -157,13 +213,13 @@ const RISK_RULES = {
             "message on whatsapp",
             "whatsapp interview",
             "whatsapp recruiter",
-            "telegram",
             "telegram only",
             "contact on telegram",
             "contact via telegram",
             "message on telegram",
             "move to telegram",
-            "telegram interview"
+            "telegram interview",
+            "telegram recruiter"
         ]
     },
 
@@ -176,7 +232,6 @@ const RISK_RULES = {
             "contact on signal",
             "contact via signal",
             "message on signal",
-            "signal app",
             "signal interview",
             "signal recruiter"
         ]
@@ -508,256 +563,212 @@ const RISK_RULES = {
             "send your aadhaar",
             "send aadhaar",
             "share your aadhaar",
-            "aadhaar number",
-            "aadhar number",
+            "provide aadhaar",
+            "aadhaar card details",
+            "aadhaar details",
             "send your pan",
             "send pan card",
             "share your pan",
-            "pan card number",
-            "passport number",
+            "provide pan card",
+            "pan card details",
             "send your passport",
+            "send passport",
             "share your passport",
-            "bank account details",
-            "bank details",
-            "credit card details",
-            "debit card details",
-            "send your card details",
-            "share your card details"
+            "passport details",
+            "send your bank details",
+            "send bank details",
+            "share your bank details",
+            "provide bank details",
+            "bank account details"
         ]
     },
 
     otpRequest: {
         title: "OTP Requested",
         severity: "Critical",
-        weight: 40,
-        explanation: "The message appears to request a one-time password or verification code. Recruiters should not need authentication codes sent to your phone, email, bank account, or other personal accounts.",
+        weight: 35,
+        explanation: "The message appears to request a one-time password or verification code. OTPs should not be shared with recruiters or employers.",
         keywords: [
             "send otp",
-            "send the otp",
+            "send your otp",
             "share otp",
-            "share the otp",
+            "share your otp",
             "provide otp",
-            "provide the otp",
+            "provide your otp",
             "tell me the otp",
+            "tell us the otp",
             "forward otp",
-            "verification otp",
+            "forward the otp",
+            "verification code you received",
             "send verification code",
-            "share verification code",
-            "provide verification code",
-            "send the code you received",
-            "share the code you received"
+            "share verification code"
         ]
     },
 
     passwordRequest: {
         title: "Password Requested",
         severity: "Critical",
-        weight: 40,
-        explanation: "The recruiter appears to request an account password or login credential. Legitimate recruiters should never need passwords for your email, banking, social media, job portal, or other personal accounts.",
+        weight: 35,
+        explanation: "The recruitment message appears to request an account password or login credential. Legitimate recruiters should not ask applicants to disclose passwords.",
         keywords: [
             "send your password",
             "share your password",
             "provide your password",
+            "tell me your password",
+            "tell us your password",
             "email password",
-            "gmail password",
-            "banking password",
-            "internet banking password",
             "account password",
             "login password",
-            "share login credentials",
-            "send login credentials",
-            "provide login credentials"
+            "banking password",
+            "internet banking password",
+            "net banking password"
         ]
     },
 
-    upiPinRequest: {
-        title: "UPI PIN Requested",
+    pinRequest: {
+        title: "Financial PIN Requested",
         severity: "Critical",
-        weight: 40,
-        explanation: "The message appears to request a UPI PIN. A UPI PIN authorizes financial transactions and should never be shared with a recruiter or employer.",
+        weight: 35,
+        explanation: "The message appears to request a financial PIN. Recruiters and employers should never need an applicant's card PIN or UPI PIN.",
         keywords: [
-            "send upi pin",
-            "share upi pin",
-            "provide upi pin",
-            "enter your upi pin",
-            "tell me your upi pin",
-            "upi password",
-            "share your upi password"
+            "send your pin",
+            "share your pin",
+            "provide your pin",
+            "tell me your pin",
+            "tell us your pin",
+            "upi pin",
+            "atm pin",
+            "debit card pin",
+            "credit card pin",
+            "banking pin"
         ]
     },
 
-    cardSecurityCodeRequest: {
+    cvvRequest: {
         title: "Card Security Code Requested",
         severity: "Critical",
-        weight: 40,
-        explanation: "The recruiter appears to request a card security code such as a CVV or CVC. Employers and recruiters should not need this information during recruitment.",
+        weight: 35,
+        explanation: "The message appears to request a card security code such as a CVV. This information should never be provided as part of a recruitment process.",
         keywords: [
             "send cvv",
+            "send your cvv",
             "share cvv",
+            "share your cvv",
             "provide cvv",
-            "your cvv",
+            "provide your cvv",
+            "card cvv",
             "cvv number",
-            "cvv code",
-            "send cvc",
-            "share cvc",
-            "provide cvc",
-            "cvc number",
+            "security code on card",
             "card security code"
         ]
     },
 
-    cardPinRequest: {
-        title: "Card PIN Requested",
+    cardDetailsRequest: {
+        title: "Payment Card Details Requested",
         severity: "Critical",
-        weight: 40,
-        explanation: "The message appears to request a debit or credit card PIN. This information should never be shared as part of a recruitment process.",
+        weight: 35,
+        explanation: "The recruitment message appears to request debit or credit card information. Payment card details are not normally required during recruitment.",
         keywords: [
-            "send card pin",
-            "share card pin",
-            "provide card pin",
-            "debit card pin",
-            "credit card pin",
-            "atm pin",
-            "send atm pin",
-            "share atm pin",
-            "provide atm pin"
+            "send credit card details",
+            "share credit card details",
+            "provide credit card details",
+            "credit card number",
+            "send debit card details",
+            "share debit card details",
+            "provide debit card details",
+            "debit card number",
+            "send card details",
+            "share card details"
         ]
     },
 
-    onlineBankingCredentials: {
+    bankingCredentials: {
         title: "Online Banking Credentials Requested",
         severity: "Critical",
-        weight: 40,
-        explanation: "The message appears to request online banking credentials. Recruiters do not need access to an applicant's banking account or authentication credentials.",
+        weight: 35,
+        explanation: "The message appears to request access credentials for online banking. No legitimate recruitment process should require an applicant to disclose banking login credentials.",
         keywords: [
             "internet banking login",
-            "internet banking credentials",
             "net banking login",
-            "netbanking login",
+            "online banking login",
             "bank login details",
-            "bank login credentials",
-            "bank username and password",
-            "online banking password",
-            "mobile banking password"
-        ]
-    },
-
-    bankAccountRequest: {
-        title: "Bank Account Information Requested",
-        severity: "High",
-        weight: 22,
-        explanation: "Bank account information appears to be requested during the recruitment process. Employers may legitimately request payroll information after formal hiring, but early or unexplained requests should be verified carefully.",
-        keywords: [
-            "send bank details",
-            "share bank details",
-            "provide bank details",
-            "bank account number",
-            "send account number",
-            "share account number",
-            "provide account number",
-            "send cancelled cheque",
-            "share cancelled cheque",
-            "bank statement",
-            "send bank statement",
-            "share bank statement"
-        ]
-    },
-
-    aadhaarRequest: {
-        title: "Aadhaar Information Requested",
-        severity: "High",
-        weight: 22,
-        explanation: "The message appears to request Aadhaar information. Identity verification may occur during legitimate onboarding, but applicants should verify the employer and purpose before sharing identity documents.",
-        keywords: [
-            "aadhaar number",
-            "aadhar number",
-            "aadhaar card number",
-            "aadhar card number",
-            "send aadhaar card",
-            "send aadhar card",
-            "share aadhaar card",
-            "share aadhar card",
-            "upload aadhaar",
-            "upload aadhar",
-            "aadhaar copy",
-            "aadhar copy"
-        ]
-    },
-
-    panRequest: {
-        title: "PAN Information Requested",
-        severity: "High",
-        weight: 20,
-        explanation: "The message appears to request PAN information. PAN may be required during legitimate employment onboarding in India, but requests made before the employer or job has been verified warrant caution.",
-        keywords: [
-            "pan card number",
-            "send pan card",
-            "share pan card",
-            "upload pan card",
-            "pan card copy",
-            "send your pan",
-            "share your pan",
-            "provide pan number",
-            "provide your pan"
-        ]
-    },
-
-    passportRequest: {
-        title: "Passport Information Requested",
-        severity: "High",
-        weight: 20,
-        explanation: "The recruiter appears to request passport information. This can be legitimate for some international employment processes, but the employer and reason for the request should be independently verified first.",
-        keywords: [
-            "passport number",
-            "send passport",
-            "send your passport",
-            "share passport",
-            "share your passport",
-            "upload passport",
-            "passport copy",
-            "passport scan",
-            "scanned passport"
+            "banking login details",
+            "bank username",
+            "internet banking username",
+            "net banking username",
+            "bank login password",
+            "banking credentials"
         ]
     },
 
     identityDocumentRequest: {
-        title: "Identity Document Requested",
+        title: "Identity Document Requested Early",
         severity: "Medium",
-        weight: 16,
-        explanation: "The recruitment process appears to request identity documents. Legitimate employers may require identification during formal onboarding, but unusually early requests should be verified before documents are shared.",
+        weight: 15,
+        explanation: "The message appears to request identity documents during an early stage of recruitment. Employers may legitimately require identity verification later, but applicants should first verify the employer, recruiter, purpose, and method of collection.",
         keywords: [
             "send id proof",
+            "send your id proof",
             "share id proof",
-            "upload id proof",
-            "identity proof",
+            "provide id proof",
+            "send identity proof",
+            "share identity proof",
             "send identity document",
-            "share identity document",
-            "government id",
-            "government issued id",
-            "send driving licence",
-            "send driving license",
-            "share driving licence",
-            "share driving license",
-            "voter id copy"
+            "send your identity document",
+            "send government id",
+            "share government id",
+            "send photo id",
+            "share photo id"
         ]
     },
 
-    selfieWithIdRequest: {
+    selfieWithID: {
         title: "Selfie With Identity Document Requested",
         severity: "High",
         weight: 24,
-        explanation: "The message appears to request a selfie or photograph together with an identity document. This combination can expose applicants to identity misuse and should only be provided through a verified employer's legitimate onboarding process.",
+        explanation: "The recruiter appears to request a selfie together with an identity document. This can expose applicants to identity misuse and should only be considered after independently verifying the employer and the legitimate need for the request.",
         keywords: [
             "selfie with aadhaar",
-            "selfie with aadhar",
-            "selfie with pan",
+            "selfie with pan card",
             "selfie with passport",
             "selfie with id",
+            "selfie holding id",
+            "selfie holding your id",
             "photo holding aadhaar",
-            "photo holding aadhar",
-            "photo holding pan card",
             "photo holding passport",
-            "photo holding id"
+            "photo with identity document"
+        ]
+    },
+
+    bankAccountAccess: {
+        title: "Bank Account Access Requested",
+        severity: "Critical",
+        weight: 35,
+        explanation: "The message appears to request access to an applicant's bank account rather than ordinary payroll information. Employers should never require access to an applicant's banking account.",
+        keywords: [
+            "access your bank account",
+            "bank account access",
+            "login to your bank account",
+            "log into your bank account",
+            "give access to bank account",
+            "provide bank account login",
+            "share bank login"
+        ]
+    },
+
+    screenSharingBanking: {
+        title: "Screen Sharing During Financial Activity",
+        severity: "Critical",
+        weight: 35,
+        explanation: "The message appears to request screen sharing while accessing financial information. Do not expose banking, payment, OTP, PIN, or card information through screen sharing.",
+        keywords: [
+            "share screen while banking",
+            "screen share your bank",
+            "screen share bank account",
+            "share your banking screen",
+            "share screen for payment",
+            "screen share for payment",
+            "share screen while paying"
         ]
     },
         urgency: {
@@ -771,7 +782,6 @@ const RISK_RULES = {
             "respond immediately",
             "reply immediately",
             "apply immediately",
-            "apply now immediately",
             "immediate response required",
             "immediate action required"
         ]
@@ -786,7 +796,6 @@ const RISK_RULES = {
             "offer expires today",
             "offer expires tonight",
             "offer valid today only",
-            "offer valid for today",
             "accept today",
             "accept immediately",
             "confirm today",
@@ -838,15 +847,15 @@ const RISK_RULES = {
         weight: 32,
         explanation: "The opportunity appears to request payment for a visa as part of recruitment. International hiring can involve legitimate immigration costs, but applicants should independently verify the employer, immigration process, and authorized payment recipient before paying.",
         keywords: [
-            "visa fee",
-            "visa processing fee",
             "pay visa fee",
-            "visa payment",
-            "visa charges",
-            "visa processing charges",
-            "employment visa fee",
-            "work visa fee",
-            "visa deposit"
+            "pay the visa fee",
+            "visa payment required",
+            "visa fee required",
+            "send visa fee",
+            "transfer visa fee",
+            "employment visa fee required",
+            "work visa fee required",
+            "visa processing payment"
         ]
     },
 
@@ -856,13 +865,13 @@ const RISK_RULES = {
         weight: 30,
         explanation: "The recruiter appears to request money for a work permit. Verify the employer and immigration process through official government or authorized channels before making any payment.",
         keywords: [
-            "work permit fee",
-            "work permit payment",
+            "pay work permit fee",
+            "pay the work permit fee",
+            "work permit payment required",
+            "send work permit fee",
+            "transfer work permit fee",
             "pay for work permit",
-            "work permit charges",
-            "permit processing fee",
-            "employment permit fee",
-            "work authorization fee"
+            "employment permit payment"
         ]
     },
 
@@ -872,13 +881,13 @@ const RISK_RULES = {
         weight: 25,
         explanation: "The opportunity appears to request immigration-related payment through the recruitment process. Verify all immigration costs and recipients independently before paying.",
         keywords: [
-            "immigration fee",
-            "immigration charges",
-            "immigration processing fee",
-            "immigration payment",
-            "migration fee",
-            "migration charges",
-            "immigration deposit"
+            "pay immigration fee",
+            "pay immigration charges",
+            "immigration payment required",
+            "send immigration fee",
+            "transfer immigration fee",
+            "pay migration fee",
+            "immigration deposit required"
         ]
     },
 
@@ -888,13 +897,13 @@ const RISK_RULES = {
         weight: 30,
         explanation: "The recruiter appears to request an embassy or consular payment. Verify any such fee directly through the relevant official government or diplomatic channel rather than relying solely on recruiter instructions.",
         keywords: [
-            "embassy fee",
-            "embassy charges",
-            "embassy payment",
-            "consulate fee",
-            "consular fee",
-            "consulate payment",
-            "embassy processing fee"
+            "pay embassy fee",
+            "embassy payment required",
+            "send embassy fee",
+            "transfer embassy fee",
+            "pay consulate fee",
+            "pay consular fee",
+            "consular payment required"
         ]
     },
 
@@ -904,13 +913,13 @@ const RISK_RULES = {
         weight: 22,
         explanation: "The applicant appears to be asked for a travel-related deposit before employment. Verify who receives the money, why it is required, and whether the employer is legitimate before making a payment.",
         keywords: [
-            "travel deposit",
-            "flight deposit",
-            "ticket deposit",
-            "airfare deposit",
-            "travel security deposit",
-            "flight booking deposit",
-            "ticket booking fee"
+            "pay travel deposit",
+            "travel deposit required",
+            "pay flight deposit",
+            "flight deposit required",
+            "pay ticket deposit",
+            "airfare deposit required",
+            "travel security deposit"
         ]
     },
 
@@ -920,14 +929,13 @@ const RISK_RULES = {
         weight: 20,
         explanation: "The recruiter appears to request payment for delivering employment documents, equipment, or an offer package. Unexpected courier charges during recruitment should be independently verified.",
         keywords: [
-            "courier fee",
-            "courier charges",
-            "delivery fee for documents",
-            "document delivery fee",
-            "offer letter delivery fee",
-            "equipment delivery fee",
-            "shipping fee for equipment",
-            "parcel fee"
+            "pay courier fee",
+            "courier payment required",
+            "pay courier charges",
+            "pay document delivery fee",
+            "pay offer letter delivery fee",
+            "pay equipment delivery fee",
+            "pay shipping fee for equipment"
         ]
     },
 
@@ -937,13 +945,13 @@ const RISK_RULES = {
         weight: 22,
         explanation: "The applicant appears to be required to pay directly for a background check or employment verification. Some legitimate processes may involve third-party services, but the employer and payment request should be verified independently.",
         keywords: [
-            "background check fee",
-            "background verification fee",
-            "verification charges",
-            "employment verification fee",
-            "police verification fee",
-            "criminal check fee",
-            "screening fee"
+            "pay background check fee",
+            "background check payment required",
+            "pay background verification fee",
+            "pay verification charges",
+            "pay employment verification fee",
+            "pay police verification fee",
+            "pay screening fee"
         ]
     },
 
@@ -953,13 +961,13 @@ const RISK_RULES = {
         weight: 15,
         explanation: "The recruitment process appears to require payment for a medical examination. Medical checks can be legitimate for some roles, but applicants should verify the employer, clinic, and payment arrangement independently.",
         keywords: [
-            "medical examination fee",
-            "medical test fee",
-            "medical checkup fee",
-            "medical check-up fee",
-            "fitness certificate fee",
-            "health check fee",
-            "pre employment medical fee"
+            "pay medical examination fee",
+            "pay medical test fee",
+            "medical payment required",
+            "pay medical checkup fee",
+            "pay fitness certificate fee",
+            "pay health check fee",
+            "pre employment medical payment"
         ]
     },
 
@@ -989,15 +997,15 @@ const RISK_RULES = {
         explanation: "The opportunity appears to require the applicant to add money, recharge an account, or fund a balance before earning or withdrawing money. This is a strong financial warning sign.",
         keywords: [
             "recharge your account",
-            "recharge account",
+            "recharge account to continue",
             "recharge to continue",
             "recharge to unlock",
             "add funds to continue",
             "deposit to continue",
             "top up your account",
             "top-up your account",
-            "fund your account",
-            "increase account balance"
+            "fund your account to continue",
+            "increase account balance to continue"
         ]
     },
 
@@ -1008,14 +1016,14 @@ const RISK_RULES = {
         explanation: "The opportunity appears to require additional payment before supposed earnings can be withdrawn. Requests to pay money in order to release earnings are a major warning sign.",
         keywords: [
             "pay to withdraw",
-            "withdrawal fee",
-            "withdrawal charges",
+            "pay withdrawal fee",
+            "withdrawal payment required",
             "pay before withdrawal",
             "deposit before withdrawal",
             "recharge before withdrawal",
-            "unlock withdrawal",
+            "pay to unlock withdrawal",
             "withdrawal activation fee",
-            "release your earnings"
+            "pay to release your earnings"
         ]
     },
 
@@ -1027,11 +1035,11 @@ const RISK_RULES = {
         keywords: [
             "pay tax before receiving salary",
             "pay tax to receive salary",
-            "tax clearance fee",
-            "income tax clearance fee",
-            "tax processing fee",
+            "pay tax clearance fee",
+            "pay income tax clearance fee",
+            "pay tax processing fee",
             "pay tax to withdraw",
-            "tax fee before withdrawal",
+            "pay tax before withdrawal",
             "tax payment to release funds"
         ]
     },
@@ -1059,10 +1067,10 @@ const RISK_RULES = {
         weight: 32,
         explanation: "The opportunity appears to involve receiving a cheque or payment and then forwarding part of the money elsewhere. This pattern can expose applicants to financial loss if the original payment is fraudulent or reversed.",
         keywords: [
-            "deposit the cheque",
-            "deposit the check",
-            "cash the cheque",
-            "cash the check",
+            "deposit the cheque and send",
+            "deposit the check and send",
+            "cash the cheque and send",
+            "cash the check and send",
             "send remaining money",
             "forward the remaining funds",
             "keep your commission and send",
