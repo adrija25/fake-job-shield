@@ -201,7 +201,8 @@ const RISK_RULES = {
             "scan qr"
         ]
     },
-        suspiciousMessaging: {
+
+    suspiciousMessaging: {
         title: "Suspicious Communication Method",
         severity: "High",
         weight: 20,
@@ -356,7 +357,8 @@ const RISK_RULES = {
             "authorized hiring agent"
         ]
     },
-        unrealisticPay: {
+
+    unrealisticPay: {
         title: "Unusually High Compensation",
         severity: "Medium",
         weight: 18,
@@ -771,7 +773,8 @@ const RISK_RULES = {
             "share screen while paying"
         ]
     },
-        urgency: {
+
+    urgency: {
         title: "Pressure or Urgency",
         severity: "Low",
         weight: 10,
@@ -970,8 +973,7 @@ const RISK_RULES = {
             "pre employment medical payment"
         ]
     },
-
-    taskBasedRecruitment: {
+        taskBasedRecruitment: {
         title: "Task-Based Earning Pattern",
         severity: "High",
         weight: 20,
@@ -1076,6 +1078,61 @@ const RISK_RULES = {
             "keep your commission and send",
             "deduct your salary and send",
             "deposit payment and transfer"
+        ]
+    },
+
+    /*
+     * Founder / Partner / Applicant Capital Contribution
+     *
+     * This is intentionally separate from ordinary recruitment
+     * fees. Founder and partnership opportunities can legitimately
+     * involve capital contributions, so the rule identifies the
+     * financial commitment without declaring the opportunity
+     * fraudulent.
+     */
+    applicantCapitalContribution: {
+        title: "Applicant Financial Contribution Required",
+        severity: "High",
+        weight: 24,
+        explanation: "The opportunity appears to require the applicant, founder, co-founder, or partner to contribute personal capital as a condition of participation. Some genuine founder or partnership opportunities involve investment, but this is materially different from ordinary employment and the organization, equity terms, legal structure, and use of funds should be independently verified before committing money.",
+        keywords: [
+            "capital commitment",
+            "capital contribution",
+            "financial contribution",
+            "financial commitment",
+            "personal capital",
+
+            "invest your own capital",
+            "invest own capital",
+            "investing your own capital",
+
+            "expected to invest",
+            "required to invest",
+            "expected to make an investment",
+            "required to make an investment",
+
+            "minimum investment",
+            "minimum capital",
+            "investment required",
+            "capital required",
+
+            "contribute capital",
+            "contribute financially",
+            "contribute personal capital",
+
+            "founder investment",
+            "co-founder investment",
+            "cofounder investment",
+            "founding partner investment",
+            "partner investment",
+
+            "equity investment required",
+            "equity contribution",
+
+            "bring capital",
+            "commit capital",
+            "invest alongside their time",
+            "invest alongside your time"
         ]
     }
 
